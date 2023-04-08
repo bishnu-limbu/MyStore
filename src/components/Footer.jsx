@@ -1,8 +1,10 @@
 import { Facebook, Instagram, MailOutline, Phone, Pinterest, Room, Twitter } from "@material-ui/icons";
 import styled from "styled-components"
+import {mobile} from '../responsive'
 
 const Container = styled.div`
 display:flex;
+${mobile({width:"50px"})}
 
 `;
 
@@ -84,6 +86,7 @@ height:80px;
 
 `;
 
+
 const Footer = () => {
     return (
         <Container>
@@ -136,6 +139,7 @@ const Footer = () => {
 
                 <Title>Payment</Title>
                 <Payment src="https://www.weblinknepal.com/ckfinder/userfiles/images/Online-Payment-Gateway.jpg"/>
+                
                 
             </Right>
         </Container>

@@ -39,6 +39,7 @@ border:1px solid  #EC407A;
 
 
 `;
+
 const Input=styled.input`
 border:none;
 flex:8;
