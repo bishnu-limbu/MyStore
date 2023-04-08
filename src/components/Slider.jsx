@@ -46,7 +46,7 @@ width:100vw;
 height:100vh;
 display:flex;
 align-items:center;
-background-color:#${props=>props.bg}
+background-color:#${props=>props.bg};
 ${mobile({width:"615px"})}
 
 `;
