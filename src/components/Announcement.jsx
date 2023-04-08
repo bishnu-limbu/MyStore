@@ -10,7 +10,7 @@ align-items:center;
 justify-content:center;
 font-size:14px;
 font-weight:500;
-    ${mobile({width:"615px"})}
+${mobile({width:"100%"})};
 
 
 

@@ -4,6 +4,7 @@ import {mobile} from '../responsive'
 
 const Container = styled.div`
 display:flex;
+flex-wrap: wrap;
 ${mobile({width:"50px"})}
 
 `;
