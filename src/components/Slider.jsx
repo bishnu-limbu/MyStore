@@ -3,6 +3,7 @@ import { useState } from "react";
 import styled from 'styled-components'
 import {sliderItems} from "../data"
 import {mobile} from '../responsive'
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
 width:100%;
@@ -10,6 +11,9 @@ height:100vh;
 display:flex;
 position:relative;
 overflow:hidden;
+
+${mobile({height:"600px"})}
+
 
 
 
@@ -31,6 +35,8 @@ margin:auto;
 cursor:pointer;
 opacity:0.5;
 z-index:2;
+${mobile({marginTop:"80%"})}
+
 `;
 // left/right
 
@@ -39,6 +45,8 @@ height:100%;
 display:flex;
 transform:translateX(${props=>props.slideIndex * -100}vw);
 transition:all 1.5s ease;
+
+
 `;
 
 const Slide = styled.div`
@@ -47,7 +55,7 @@ height:100vh;
 display:flex;
 align-items:center;
 background-color:#${props=>props.bg};
-${mobile({width:"615px"})}
+
 
 `;
 
@@ -56,12 +64,15 @@ const ImgContainer = styled.div`
 height:100%;
 flex:1;
 margin-top:60px;
+${mobile({width:"200px"})}
+
 
 `;
 
 const Image = styled.img`
 height:80%;
 
+${mobile({width:"180px",objectFit:"cover"})}
 
 
 
@@ -71,10 +82,13 @@ const InfoContainer = styled.div`
 flex:1;
 padding:50px;
 
+
 `;
 
 const Title = styled.h1`
 font-size:70px;
+${mobile({fontSize:"18px"})}
+
 `;
 
 const Desc = styled.p`
@@ -82,6 +96,8 @@ margin:50px 0px;
 font-size:20px;
 font-weight:500;
 letter-spacing:3px;
+${mobile({fontSize:"15px"})}
+
 `;
 
 const Button = styled.button`
@@ -89,6 +105,8 @@ padding:10px;
 font-size:20px;
 background-color:transparent;
 cursor:pointer;
+${mobile({fontSize:"15px"})}
+
 `;
 
 
@@ -96,6 +114,12 @@ cursor:pointer;
 
 
 const Slider = () => {
+    let navigate=useNavigate()
+    const routeProductList = () => { 
+        let path = `/productlist`; 
+        navigate(path);
+      }
+   
 
         const[slideIndex,setSlideIndex]=useState(0);
     // Nested arrow func for handling click event
@@ -123,7 +147,7 @@ const Slider = () => {
                 <InfoContainer>
                     <Title>{item.title}</Title>
                     <Desc>{item.desc}</Desc>
-                    <Button>SHOP NOW</Button>
+                    <Button onClick={routeProductList}>SHOP NOW</Button>
                 </InfoContainer>
                 </Slide>
                     ))}

@@ -52,7 +52,7 @@ padding:20px;
 `;
 
 const Title=styled.h3`
-margin-bottom:30px;
+margin-bottom:8px;
 color:#EC407A;
 `; 
 
@@ -63,10 +63,14 @@ list-style:none;
 display:flex;
 flex-wrap:wrap;
 color:#EC407A;
+${mobile({display:"grid",gridTemplateColumns:"100% 100%"})}
+
 `; 
 const ListItem=styled.li`
 width:50%;
 margin-bottom:10px;
+${mobile({width:"100%"})}
+
 `; 
 const Right = styled.div`
 flex:1;
@@ -84,6 +88,7 @@ const Payment=styled.img`
 color:#EC407A;
 width:40%;
 height:80px;
+${mobile({width:"100%"})}
 
 `;
 

@@ -1,17 +1,44 @@
 import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom';
+import {mobile} from '../responsive'
+// hovering effect on props
+
+
+const Image = styled.img`
+width:100%;
+height:100%;
+object-fit:cover;
+/* background-size: 100% 100%; */
+transition:all 1.5s ease;
+cursor:pointer;
+/* ${mobile({width:"320px"})} */
+
+
+
+`;
+
 
 const Container = styled.div`
 flex:1;
 margin:10px;
 height:70vh;
 position:relative;
-`;
-const Image = styled.img`
-width:100%;
-height:100%;
-object-fit:cover;
+&:hover ${Image}{
+    transform: scale(1.4);
+}
+/* ${mobile({width:"100%",display:"flex",flexDirection:"column"})} */
+
+
 
 `;
+const Imgcontainer=styled.div`
+  overflow: hidden;
+    height: 100%;
+${mobile({width:"320px",display:"flex",flexDirection:"column",flexWrap:"wrap"})}
+
+
+`;
+
 const Info = styled.div`
 position:absolute;
 top:0;
@@ -26,7 +53,7 @@ justify-content:center;
 
 
 `;
-const Title = styled.h1`
+const Title = styled.h2`
 color:white;
 margin-bottom:20px;
 `;
@@ -40,13 +67,22 @@ font-weight:600;
 
 `;
 
+// 3rd part
 const CategoryItem = ({item}) => {
+    let navigate=useNavigate()
+    const routeproductlist = () => { 
+        let path = `/productlist`; 
+        navigate(path);
+      }
     return (
         <Container>
+            
+            <Imgcontainer>
             <Image src={item.img}></Image>
+            </Imgcontainer>
             <Info>
                 <Title>{item.title}</Title>
-                <Button>SHOP NOW</Button>
+                <Button onClick={routeproductlist}>SHOP NOW</Button>
             </Info>
         </Container>
     )

@@ -4,6 +4,8 @@ import Navbar from '../components/Navbar'
 import Announcement from '../components/Announcement'
 import Footer from '../components/Footer'
 import { Add, Remove } from '@material-ui/icons';
+import { useNavigate } from 'react-router';
+import { useState } from 'react';
 
 const Container=styled.div`
     
@@ -115,7 +117,7 @@ const Summary=styled.div`
   border:2px solid #EC407A;
   border-radius: 10px;
   padding: 20px;
-  height: 45vh;
+  height: 47vh;
   
 `;
 const SummaryTitle=styled.h1`
@@ -150,6 +152,44 @@ font-weight: 600;
 
 
 const Cart = () => {
+    let navigate=useNavigate()
+    const routeProductlist = () => { 
+        let path = `/productlist`; 
+        navigate(path);
+    }
+    const routeHome = () => { 
+        let path = `/home`; 
+        navigate(path);
+    }
+
+    const [state,setState]=useState(1)
+    
+
+    const increment=()=>{
+        setState(state+1)
+    }
+
+    const decrement=()=>{
+        setState(state-1)
+        if(state<=1){
+            setState(1);
+        }
+    }
+
+    const [count,setCount]=useState(1)
+    
+
+    const increCount=()=>{
+        setCount(count+1)
+    }
+
+    const decreCount=()=>{
+        setCount(count-1)
+        if(count<=1){
+            setCount(1);
+        }
+    }
+
   return (
     <Container>
         <Navbar/>
@@ -157,12 +197,12 @@ const Cart = () => {
         <Wrapper>
             <Title>YOUR BAG</Title>
             <Top>
-                <TopButton>CONTINUE SHOPPING</TopButton>
+                <TopButton onClick={routeProductlist}>CONTINUE SHOPPING</TopButton>
                 <TopTexts>
                     <TopText>Shopping Bag(2)</TopText>
                     <TopText>Your Wishlist(0)</TopText>
                 </TopTexts>
-                <TopButton type="filled" >CHECKOUT NOW</TopButton>
+                <TopButton type="filled" onClick={routeHome}>CHECKOUT NOW</TopButton>
             </Top>
             <Bottom>
                 <Info>
@@ -179,9 +219,9 @@ const Cart = () => {
                         </ProductDetail>
                         <PriceDetail>
                             <ProductAmountContainer>
-                                <Add/>
-                                <ProductAmount>2</ProductAmount>
-                                <Remove/>
+                                <Add onClick={increment}/>
+                                <ProductAmount >{state}</ProductAmount>
+                                <Remove onClick={decrement}/>
                             </ProductAmountContainer>
                             <ProductPrice>Rs.2500</ProductPrice>
                         </PriceDetail>
@@ -199,9 +239,9 @@ const Cart = () => {
                         </ProductDetail>
                         <PriceDetail>
                             <ProductAmountContainer>
-                                <Add/>
-                                <ProductAmount>2</ProductAmount>
-                                <Remove/>
+                                <Add onClick={increCount}/>
+                                <ProductAmount>{count}</ProductAmount>
+                                <Remove onClick={decreCount}/>
                             </ProductAmountContainer>
                             <ProductPrice>Rs.3200</ProductPrice>
                         </PriceDetail>
@@ -226,7 +266,7 @@ const Cart = () => {
                         <SummaryItemText >Total:</SummaryItemText>
                         <SummaryItemPrice>Rs.5800</SummaryItemPrice>
                     </SummaryItem>
-                    <Button>CHECKOUT NOW</Button>
+                    <Button onClick={routeHome}>CHECKOUT NOW</Button>
                 </Summary>
 
             </Bottom>

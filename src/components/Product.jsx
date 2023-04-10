@@ -1,5 +1,6 @@
-import { FavoriteBorderOutlined, SearchOutlined, ShoppingCartOutlined } from "@material-ui/icons";
+import { ShoppingCartOutlined,Favorite } from "@material-ui/icons";
 import styled from "styled-components"
+import { useNavigate } from 'react-router-dom';
 
 const Info=styled.div`
 opacity:0;
@@ -15,6 +16,8 @@ align-items:center;
 justify-content:center;
 transition:all 0.5s ease;
 cursor:pointer;
+transition:2s;
+overflow: hidden;
 
 `;
 
@@ -28,6 +31,7 @@ justify-content:center;
 align-items:center;
 background-color:#f5fbfd;
 position:relative;
+flex-direction: column;
 
 &:hover ${Info}{
     opacity:1;
@@ -65,24 +69,33 @@ transition:all 0.5s ease;
     background-color:#e9f5f5;
     transform:scale(1.1);
 }
-
 `;
 
 
+const Txt=styled.h3`
+ padding-top: 15px;
+`;
+
+// 4th part
 const Product = ({item}) => {
+  // to link to product page
+  let navigate=useNavigate()
+  const routeProduct = () => { 
+      let path = `/product`; 
+      navigate(path);
+    }
   return (
     <Container>
         {/* <Circle/> */}
         <Image src={item.img}/>
+        <Txt>{item.title}</Txt>
         <Info>
            <Icon>
-           <ShoppingCartOutlined/>
+           <ShoppingCartOutlined onClick={routeProduct}/>
            </Icon>
-           <Icon>
-           <SearchOutlined/>
-           </Icon>
-           <Icon>
-           <FavoriteBorderOutlined/>
+          
+           <Icon >
+           <Favorite/>
            </Icon>
         </Info>
     </Container>

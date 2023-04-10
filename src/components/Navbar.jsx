@@ -2,12 +2,14 @@ import { Search, ShoppingCartOutlined } from '@material-ui/icons'
 import React from 'react'
 import styled from 'styled-components'
 import { Badge } from '@material-ui/core';
-import {mobile} from '../responsive'
+import {mobile} from '../responsive';
+import { useNavigate } from 'react-router-dom';
+// import { useState } from 'react';
 
 
 const Container = styled.div`
     height:60px;
-    ${mobile({height:"70px"})}
+    ${mobile({height:"50px"})}
 `;
 const Wrapper = styled.div`
     padding: 10px 20px;
@@ -23,6 +25,8 @@ flex:1;
 display:flex;
 align-items:center;
 
+
+
 `;
 const Language = styled.span`
     font-size:15px;
@@ -37,23 +41,31 @@ const SearchContainer = styled.div`
     align-items:center;
     margin-left:25px;
     padding:5px;
+    ${mobile({marginLeft:"8px"})}
+
+
 
 `;
 const Input = styled.input`
 border:none;
+outline: 0;
 ${mobile({width:"50px"})}
+
 
 
 `;
 const Center = styled.div`
 flex:1;
 text-align:center;
+${mobile({})}
+
+
 `;
 
 const Logo = styled.h1`
 font-weight:bold;
 color:#EC407A;
-${mobile({fontSize:"24px", paddingLeft:"5px"})}
+${mobile({fontSize:"12px",marginLeft:"14px"})}
 
 
 
@@ -66,7 +78,9 @@ flex:1;
 display: flex;
 align-items:center;
 justify-content:flex-end;
-${mobile({flex:2, justifyContent: "center"})};
+/* ${mobile({flex:2, justifyContent: "center"})}; */
+${mobile({flex:2,justifyContent:"center"})}
+
 `;
 
 const MenuItem = styled.div`
@@ -74,11 +88,38 @@ const MenuItem = styled.div`
     cursor:pointer;
     margin-left:25px;
     font-weight:bold;
-${mobile({ fontSize:"12px" , marginLeft: "10px"})}
+${mobile({ fontSize:"12px" , marginLeft: "13px"})}
 `
 
 
 const Navbar = () => {
+    let navigate=useNavigate()
+    const routeLogin = () => { 
+        let path = `/login`; 
+        navigate(path);
+      }
+      const routeRegister = () => { 
+        let path = `/register`; 
+        navigate(path);
+      }
+      const routeCart = () => { 
+        let path = `/cart`; 
+        navigate(path);
+      }
+
+    //   const[state,setState]=useState(0)
+
+    //   const increment=()=>{
+    //     setState(state+1)
+    //   }
+
+    //   const decrement=()=>{
+    //     setState(state-1)
+    //     if(state<=1){
+    //         setState(1);
+    //     }
+    //   }
+
     return (
         <Container>
             <Wrapper>
@@ -91,10 +132,10 @@ const Navbar = () => {
                 </Left>
                 <Center><Logo>FAIRY CLOSET</Logo></Center>
                 <Right>
-                    <MenuItem>REGISTER</MenuItem>
-                    <MenuItem>SIGN IN</MenuItem>
+                    <MenuItem onClick={routeRegister}>REGISTER</MenuItem>
+                    <MenuItem onClick={routeLogin}>SIGN IN</MenuItem>
                     <MenuItem>
-                        <Badge badgeContent={4} color="primary">
+                        <Badge onClick={routeCart}  badgeContent={2} color="primary">
                             <ShoppingCartOutlined></ShoppingCartOutlined>
                         </Badge>
 
